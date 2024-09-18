@@ -6,7 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\CustomersController;
 use App\Http\Controllers\MedicinesController;
 use App\Http\Controllers\SuppliersController;
-
+use App\Http\Controllers\InvoicesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -83,6 +83,21 @@ Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/suppliers/delete/{id}',[SuppliersController::class, 'delete']);
 
      //supplier end
+
+     //invoice start
+    Route::get('admin/invoices',[InvoicesController::class, 'index']);
+
+    Route::get('admin/invoices/add', [InvoicesController::class, 'create']);
+
+    Route::post('admin/invoices/add', [InvoicesController::class, 'store']);
+
+    Route::get('admin/invoices/delete/{id}',[InvoicesController::class, 'delete']);
+
+    Route::get('admin/invoices/edit/{id}', [InvoicesController::class, 'edit']);
+
+    Route::post('admin/invoices/edit/{id}', [InvoicesController::class, 'update']);
+
+     //invoice end
 
 
 

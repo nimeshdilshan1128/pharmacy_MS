@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\CustomerModel;
+use App\Models\CustomersModel;
 
 class CustomersController extends Controller
 {
     public function customers(Request $request){
-        $data['getRecord'] = CustomerModel::get();
+        $data['getRecord'] = CustomersModel::get();
         return view('admin.customers.list', $data);
     }
 
@@ -21,7 +21,7 @@ class CustomersController extends Controller
     {
         //dd($request->all());
 
-        $save = new CustomerModel;
+        $save = new CustomersModel;
         $save->name = trim($request->name);
         $save->contact_number = trim($request->contact_number);
         $save->address = trim($request->address);
@@ -35,13 +35,13 @@ class CustomersController extends Controller
 
     public function edit_customers($id, Request $request){
         //echo $id;die();
-        $data['getRecord'] = CustomerModel::find($id);
+        $data['getRecord'] = CustomersModel::find($id);
         return view('admin.customers.edit', $data);
     }
 
     public function update_customers($id, Request $request)
     {
-        $save = CustomerModel::find($id);
+        $save = CustomersModel::find($id);
         $save->name = trim($request->name);
         $save->contact_number = trim($request->contact_number);
         $save->address = trim($request->address);
@@ -54,7 +54,7 @@ class CustomersController extends Controller
 
     public function delete_customers($id){
         //echo $id;die();
-        $delete_record = CustomerModel::find($id);
+        $delete_record = CustomersModel::find($id);
         $delete_record->delete();
         return redirect('admin/customers')->with('success', 'Customer Successfully Deleted.');
     }
@@ -63,4 +63,3 @@ class CustomersController extends Controller
 }
 
 ?>
-  
