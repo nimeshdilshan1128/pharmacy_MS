@@ -49,9 +49,9 @@
                                     </td>
                                   
 									<td>
-										<a href="" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
+										<a href="{{ url('admin/purchases/edit/'.$value->id)}}" class="btn btn-success"><i class="bi bi-pencil-square"></i></a>
 
-										<a href="" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')"><i class="bi bi-trash"></i></a>
+										<a href="{{ url('admin/purchases/delete/'.$value->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')"><i class="bi bi-trash"></i></a>
 									</td>
 								</tr>
 								

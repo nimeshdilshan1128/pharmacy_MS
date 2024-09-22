@@ -8,6 +8,8 @@ use App\Http\Controllers\MedicinesController;
 use App\Http\Controllers\SuppliersController;
 use App\Http\Controllers\InvoicesController;
 use App\Http\Controllers\PurchasesController;
+use App\Http\Controllers\WebsiteLogoController;
+
 
 
 /*
@@ -111,11 +113,31 @@ Route::group(['middleware' => 'admin'], function(){
 
         Route::post('add', [PurchasesController::class, 'store']);
 
-   
+        Route::get('edit/{id}', [PurchasesController::class, 'edit']);
+
+        Route::post('edit/{id}', [PurchasesController::class, 'update']);
+
+        Route::get('delete/{id}',[PurchasesController::class, 'delete']);
+
+
      });
 
 
      //purchases end
+
+     //my account start
+      Route::get('admin/my_account', [DashboardController::class, 'my_account']);
+     
+      Route::post('admin/my_account', [DashboardController::class, 'my_account_update']);
+      //my account end
+
+      //website logo start
+
+      Route::get('admin/website_logo', [WebsiteLogoController::class, 'website_logo']);
+
+      Route::post('admin/website_logo_update', [WebsiteLogoController::class, 'website_logo_update']);
+
+      //website logo end
 
 
 

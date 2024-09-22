@@ -39,5 +39,36 @@ class PurchasesController extends Controller
         return redirect('admin/purchases')->with('success', 'purchases successfully created.');
     }
 
+    public function edit($id, Request $request)
+    {
+        $data['GetSuppliers'] = SuppliersModel::get();
+        $data['GetInvoices'] = InvoicesModel::get();
+        $data['getRecord'] = PurchasesModel::find($id);
+        return view('admin.purchases.edit', $data);
+
+    }
+
+    public function update($id, Request $request)
+    {
+        $save = PurchasesModel::find($id);
+        $save->suppliers_id = $request->suppliers_id;
+        $save->invoices_id = $request->invoices_id;
+        $save->voucher_number = $request->voucher_number;
+        $save->purchase_date = $request->purchase_date;
+        $save->total_amount = $request->total_amount;
+        $save->payment_status = $request->payment_status;
+        $save->save();
+
+        return redirect('admin/purchases')->with('success', 'purchases successfully update.');
+    }
+
+    public function delete($id, Request $request)
+    {
+        $delete_record = PurchasesModel::find($id);
+        $delete_record->delete();
+        return redirect('admin/purchases')->with('success', 'purchases Successfully Deleted.');
+
+    }
+
 
 }
