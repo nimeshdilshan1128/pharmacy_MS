@@ -13,12 +13,14 @@ class PurchasesController extends Controller
 {
     public function index(Request $request)
     {
+        $data['meta_title'] = 'admin.purchases.list';
         $data['getRecord'] = PurchasesModel::get();
         return view('admin.purchases.list', $data);
     }
 
     public function create()
     {
+        $data['meta_title'] = 'admin.purchases.add';
         $data['GetSuppliers'] = SuppliersModel::get();
         $data['GetInvoices'] = InvoicesModel::get();
         return view('admin.purchases.add', $data);
@@ -41,6 +43,7 @@ class PurchasesController extends Controller
 
     public function edit($id, Request $request)
     {
+        $data['meta_title'] = 'admin.purchases.edit';
         $data['GetSuppliers'] = SuppliersModel::get();
         $data['GetInvoices'] = InvoicesModel::get();
         $data['getRecord'] = PurchasesModel::find($id);

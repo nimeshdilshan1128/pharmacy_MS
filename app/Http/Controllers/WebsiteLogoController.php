@@ -14,6 +14,7 @@ class WebsiteLogoController extends Controller
     {
         //echo "string";die();
         $data['getRecord'] = WebsiteLogoModel::find(1);
+        $data['meta_title'] = 'website_logo_update';
         return view('admin.website_logo.update', $data);
     }
 

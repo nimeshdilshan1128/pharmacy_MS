@@ -12,12 +12,14 @@ class MedicinesController extends Controller
     public function medicines(Request $request)
     {
         $data['getRecord'] = MedicinesModel::get();
+        $data['meta_title'] = 'Medicines List';
         return view('admin.medicines.list', $data);
     }
 
     public function add_medicines()
     {
-        return view('admin.medicines.add');
+        $data['meta_title'] = 'add_medicines';
+        return view('admin.medicines.add',$data);
     }
 
     public function add_update_M(Request $request)
@@ -36,6 +38,7 @@ class MedicinesController extends Controller
      public function edit_medicines($id)
     {
         $data['getRecord'] = MedicinesModel::find($id);
+        $data['meta_title'] = 'edit_medicine';
         return view('admin.medicines.edit', $data);
     }
 
@@ -67,12 +70,14 @@ class MedicinesController extends Controller
 
     public function medicines_stock_list(){
         $data['getRecord'] = MedicinesStockModel::get();
+        $data['meta_title'] = 'medicines_stock_list';
         return view('admin.medicines_stock.list', $data);
         }
 
     public function medicines_stock_add()
     {
         $data['getRecord'] = MedicinesModel::get();
+        $data['meta_title'] = 'medicines_stock_add';
         return view('admin.medicines_stock.add', $data);
     }
 
@@ -102,6 +107,7 @@ class MedicinesController extends Controller
     {
         $data['oldRecord']= MedicinesStockModel::find($id);
         $data['getRecord'] = MedicinesModel::get();
+        $data['meta_title'] = 'medicines_stock_edit';
         return view('admin.medicines_stock.edit', $data);
 
     }

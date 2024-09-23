@@ -4,6 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\CustomersModel;
+use App\Models\InvoicesModel;
+use App\Models\MedicinesModel;
+use App\Models\MedicinesStockModel;
+use App\Models\PurchasesModel;
+use App\Models\SuppliersModel;
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str; // Correctly import Str
@@ -13,12 +20,21 @@ class DashboardController extends Controller
 {
     public function dashboard()
     {
-        return view('admin.dashboard.list');
+        $data['TotalCustomers'] = CustomersModel::count();
+        $data['TotalMedicines'] = MedicinesModel::count();
+        $data['TotalMedicinesStock'] = MedicinesStockModel::count();
+        $data['TotalSuppliers'] = SuppliersModel::count();
+        $data['TotalInvoices'] = InvoicesModel::count();
+        $data['TotalPurchases'] = PurchasesModel::count();
+        $data['meta_title'] = 'Dashboard List';
+
+        return view('admin.dashboard.list', $data);
     }
 
     public function my_account(Request $request)
     {
         // echo "A"; die();
+        $data['meta_title'] = 'my_account_update';
         $data['getRecord'] = User::find(Auth::user()->id);
         return view('admin.my_account.update', $data);
     }
